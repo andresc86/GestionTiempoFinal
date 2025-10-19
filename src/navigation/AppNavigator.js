@@ -4,14 +4,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 
 // Screens principales
-import HomeScreen from '../src/screens/HomeScreen';
-import PlanScreen from '../src/screens/PlanScreen';
-import PerfilScreen from '../src/screens/PerfilScreen';
-import AjustesScreen from '../src/screens/AjustesScreen';
+import HomeScreen from '../screens/HomeScreen';
+import PlanScreen from '../screens/PlanScreen';
+import PerfilScreen from '../screens/PerfilScreen';
+import AjustesScreen from '../screens/AjustesScreen';
 
 // 🔹 Agrega estas dos líneas
-import LoginScreen from '../src/screens/auth/LoginScreen';
-import RegisterScreen from '../src/screens/auth/RegisterScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import RegisterScreen from '../screens/auth/RegisterScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -41,16 +41,14 @@ function TabNavigator() {
   );
 }
 
-export default function AppNavigator() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {/* 🔹 Pantallas de login y registro */}
+export default function AppNavigator(){
+  return(
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
 
-      {/* 🔹 Menú principal y pantalla Plan */}
-      <Stack.Screen name="MainTabs" component={TabNavigator} />
-      <Stack.Screen name="Plan" component={PlanScreen} />
+      <Stack.Screen name="MainTabs" component={TabNavigator}/>
+      <Stack.Screen name="Plan" component={PlanScreen}/>
     </Stack.Navigator>
   );
 }
