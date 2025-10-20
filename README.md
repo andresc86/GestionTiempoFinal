@@ -1,29 +1,4 @@
-# TiempoQuest
+# TicTonTo
 
-App de gestión de tiempo con enfoque didáctico (estilo recompensas tipo Duolingo).  
-Este repo parte de la base entregada por el profesor y se personalizó **solo la interfaz** (colores, títulos y estilos).
+TicTpnTo es una aplicación para ayudarte a organizar tu tiempo de forma práctica y entretenida. La idea es que planifiques tus tareas, midas tu progreso y te mantengas motivado con un sistema de recompensas parecido al de Duolingo.
 
-## ¿Qué se cambió en esta entrega?
-- 🎨 Nueva paleta de colores (emerald/cyan + acentos para recompensas).
-- 🏷️ Títulos y textos iniciales alineados al concepto **TiempoQuest**.
-- 🧩 Estructura mínima de _theme_ para reutilizar estilos (`src/theme/index.js`).
-
-## Scripts
-```bash
-npm install
-npm run start
-npm run android 
-npm run ios
-npm run web 
-```
-
-## Estructura relevante
-```
-App.js
-src/
-  constants/colors.js   # paleta de colores (editable)
-  theme/index.js        # estilos reutilizables (opcional)
-assets/                 # íconos/imágenes
-```
-
-> Nota: La lógica de recompensas/progreso se implementará en iteraciones futuras con el profesor.
