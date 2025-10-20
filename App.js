@@ -7,12 +7,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 
-// Pantallas
+
 import HomeScreen from './src/screens/HomeScreen';
 import PlanScreen from './src/screens/PlanScreen';
 import HistorialScreen from './src/screens/HistorialScreen';
 import PerfilScreen from './src/screens/PerfilScreen';
 import AjustesScreen from './src/screens/AjustesScreen';
+
+import LoginScreen from './src/screens/auth/LoginScreen';
+import RegisterScreen from './src/screens/auth/RegisterScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -54,9 +57,14 @@ function MainTabs() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* Tabs principales */}
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
+        {/* 🔐 Auth primero */}
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+
+        {/* 🏠 App (tras login) */}
         <Stack.Screen name="MainTabs" component={MainTabs} />
+
         {/* Rutas que se abren por botón */}
         <Stack.Screen name="Plan" component={PlanScreen} />
         <Stack.Screen name="Historial" component={HistorialScreen} />

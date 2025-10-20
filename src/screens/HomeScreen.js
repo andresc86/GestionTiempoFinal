@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Colors from '../constants/colors';
 import { touchStreak } from '../utils/streak';
 import { getUserProgress } from '../utils/xpManager';
 
 const PURPLE = '#a73fe3ff';
+const AVATAR_KEY = '@tictonto_avatar';
 
 export default function HomeScreen({ navigation }) {
   const [streak, setStreak] = useState(0);
   const [xp, setXP] = useState(0);
   const [level, setLevel] = useState(1);
   const [progressAnim] = useState(new Animated.Value(0));
+  const [avatar, setAvatar] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -20,6 +23,9 @@ export default function HomeScreen({ navigation }) {
       setXP(xp);
       setLevel(level);
       animateProgress(xp, level);
+
+      const saved = await AsyncStorage.getItem(AVATAR_KEY);
+      if (saved) setAvatar(saved);
     })();
   }, []);
 
@@ -33,11 +39,23 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      {/* Avatar arriba a la derecha */}
+      <TouchableOpacity
+        style={styles.avatarBtn}
+        onPress={() => navigation.navigate('Perfil')}
+        activeOpacity={0.8}
+      >
+        {avatar ? (
+          <Image source={{ uri: avatar }} style={styles.avatar} />
+        ) : (
+          <View style={[styles.avatar, styles.avatarPlaceholder]} />
+        )}
+      </TouchableOpacity>
+
       <Text style={styles.title}>¡Bienvenido a TicTonTo!</Text>
       <Text style={styles.streak}>🔥 Racha: {streak} día(s)</Text>
 
-      {/* Progreso de nivel */}
-      <Text style={styles.levelText}>Nivel {level} 🧠 | {xp} XP</Text>
+      <Text style={styles.levelText}>Nivel {level}  | {xp} XP</Text>
       <View style={styles.progressBar}>
         <Animated.View style={[styles.progressFill, { width: progressWidth }]} />
       </View>
@@ -55,7 +73,7 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.ctaText}>Crear mi plan de hoy</Text>
       </TouchableOpacity>
 
-      {/* Botón secundario (menos destacado) */}
+      {/* Botón secundario */}
       <TouchableOpacity
         style={styles.secondaryButton}
         activeOpacity={0.9}
@@ -69,6 +87,10 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background, alignItems: 'center', justifyContent: 'center', padding: 24 },
+  avatarBtn: { position: 'absolute', top: 40, right: 24 },
+  avatar: { width: 42, height: 42, borderRadius: 21, backgroundColor: '#ddd' },
+  avatarPlaceholder: { borderWidth: 2, borderColor: '#eee' },
+
   title: { fontSize: 28, fontWeight: '800', color: Colors.text, textAlign: 'center', marginBottom: 8 },
   streak: { fontSize: 16, fontWeight: '700', color: PURPLE, textAlign: 'center', marginBottom: 8 },
   levelText: { fontSize: 16, fontWeight: '700', color: Colors.text, textAlign: 'center', marginBottom: 4 },
@@ -79,15 +101,7 @@ const styles = StyleSheet.create({
   ctaButton: { backgroundColor: PURPLE, paddingVertical: 14, paddingHorizontal: 24, borderRadius: 16, elevation: 3, width: '80%', alignItems: 'center' },
   ctaText: { color: Colors.textOnPrimary, fontSize: 16, fontWeight: '700' },
 
-  secondaryButton: {
-    marginTop: 10,
-    paddingVertical: 12,
-    borderRadius: 14,
-    borderWidth: 2,
-    borderColor: PURPLE,
-    width: '80%',
-    alignItems: 'center',
-  },
+  secondaryButton: { marginTop: 10, paddingVertical: 12, borderRadius: 14, borderWidth: 2, borderColor: PURPLE, width: '80%', alignItems: 'center' },
   secondaryText: { color: PURPLE, fontSize: 15, fontWeight: '700' },
 });
 
