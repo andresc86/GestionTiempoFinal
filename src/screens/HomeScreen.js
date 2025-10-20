@@ -39,7 +39,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* Avatar arriba a la derecha */}
+      {}
       <TouchableOpacity
         style={styles.avatarBtn}
         onPress={() => navigation.navigate('Perfil')}
@@ -64,7 +64,7 @@ export default function HomeScreen({ navigation }) {
         Organiza tus planes, cumple tus metas y desbloquea recompensas
       </Text>
 
-      {/* CTA principal */}
+      {}
       <TouchableOpacity
         style={styles.ctaButton}
         activeOpacity={0.9}
@@ -73,7 +73,7 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.ctaText}>Crear mi plan de hoy</Text>
       </TouchableOpacity>
 
-      {/* Botón secundario */}
+      {}
       <TouchableOpacity
         style={styles.secondaryButton}
         activeOpacity={0.9}

@@ -8,7 +8,7 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // ✅ para el ícono de regreso
+import { Ionicons } from '@expo/vector-icons'; 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../../services/firebaseConfig";
 

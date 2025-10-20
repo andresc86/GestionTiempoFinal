@@ -1,4 +1,3 @@
-// app.config.js
 export default {
   expo: {
     name: "TiempoAPPfinal",

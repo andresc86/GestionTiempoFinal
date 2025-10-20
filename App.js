@@ -1,4 +1,3 @@
-// 👇 Debe ser la PRIMERA línea
 import 'react-native-gesture-handler';
 
 import React from 'react';
@@ -58,14 +57,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
-        {/* 🔐 Auth primero */}
+        {}
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
 
-        {/* 🏠 App (tras login) */}
+        {}
         <Stack.Screen name="MainTabs" component={MainTabs} />
 
-        {/* Rutas que se abren por botón */}
+        {}
         <Stack.Screen name="Plan" component={PlanScreen} />
         <Stack.Screen name="Historial" component={HistorialScreen} />
       </Stack.Navigator>

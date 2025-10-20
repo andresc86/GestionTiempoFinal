@@ -38,7 +38,7 @@ export default function HistorialScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* 🔙 Botón volver al menú */}
+      {}
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Ionicons name="arrow-back" size={22} color="#fff" />
       </TouchableOpacity>
@@ -67,12 +67,7 @@ export default function HistorialScreen({ navigation }) {
         style={{ marginTop: 12 }}
       />
 
-      {/* (Opcional) Botón grande al final para volver
-      <TouchableOpacity style={styles.backBottom} onPress={() => navigation.goBack()}>
-        <Ionicons name="arrow-back" size={22} color="#fff" />
-        <Text style={styles.backBottomText}>Menú principal</Text>
-      </TouchableOpacity>
-      */}
+      {}
     </View>
   );
 }
@@ -102,7 +97,6 @@ const styles = StyleSheet.create({
   planText: { fontSize: 16, color: Colors.text, fontWeight: '600' },
   meta: { fontSize: 13, color: Colors.textMuted, marginTop: 2 },
 
-  // Botón opcional inferior
   backBottom: {
     flexDirection: 'row',
     alignItems: 'center',

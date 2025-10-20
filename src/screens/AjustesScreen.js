@@ -1,4 +1,3 @@
-// src/screens/AjustesScreen.js
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, Switch } from 'react-native';
 import Colors from '../constants/colors';
@@ -11,7 +10,6 @@ import Constants from 'expo-constants';
 
 const PURPLE = '#a73fe3ff';
 
-// Claves de storage usadas por la app
 const KEYS = {
   plans: 'userPlans',
   avatar: '@tictonto_avatar',
@@ -23,14 +21,12 @@ const KEYS = {
 export default function AjustesScreen({ navigation }) {
   const [dailyReminder, setDailyReminder] = useState(false);
 
-  // Cargar estado del recordatorio
   useEffect(() => {
     (async () => {
       const saved = await AsyncStorage.getItem(KEYS.reminder);
       if (saved) setDailyReminder(saved === '1');
     })();
 
-    // (Opcional recomendado) Configurar canal en Android
     (async () => {
       await Notifications.setNotificationChannelAsync?.('default', {
         name: 'default',
@@ -39,19 +35,18 @@ export default function AjustesScreen({ navigation }) {
     })();
   }, []);
 
-  // Programa/cancela el recordatorio
   const toggleDailyReminder = async (value) => {
     try {
       if (value) {
-        // pedir permisos
+
         const { status } = await Notifications.requestPermissionsAsync();
         if (status !== 'granted') {
           Alert.alert('Permiso requerido', 'Habilita notificaciones para los recordatorios.');
           return;
         }
-        // cancelar previos
+
         await Notifications.cancelAllScheduledNotificationsAsync();
-        // programar uno diario a las 9:00
+
         await Notifications.scheduleNotificationAsync({
           content: {
             title: 'TicTonTo ⏰',
@@ -72,7 +67,7 @@ export default function AjustesScreen({ navigation }) {
     }
   };
 
-  // Borrar datos locales
+
   const handleClearData = () => {
     Alert.alert(
       'Borrar datos locales',
@@ -96,7 +91,7 @@ export default function AjustesScreen({ navigation }) {
     );
   };
 
-  // Cerrar sesión (con reset de navegación a Login)
+
   const handleLogout = async () => {
     Alert.alert('Cerrar sesión', '¿Seguro que quieres salir?', [
       { text: 'Cancelar', style: 'cancel' },
@@ -106,9 +101,6 @@ export default function AjustesScreen({ navigation }) {
         onPress: async () => {
           try {
             await signOut(auth);
-
-            // (Opcional) limpiar datos locales al salir:
-            // await AsyncStorage.multiRemove([KEYS.plans, KEYS.avatar, KEYS.xp, KEYS.level]);
 
             navigation.reset({
               index: 0,
@@ -130,7 +122,7 @@ export default function AjustesScreen({ navigation }) {
       <Text style={styles.title}>Ajustes</Text>
       <Text style={styles.subtitle}>Personaliza tu experiencia.</Text>
 
-      {/* Editar perfil */}
+      {}
       <TouchableOpacity
         style={styles.primaryButton}
         onPress={() => navigation.navigate('Perfil')}
@@ -140,7 +132,7 @@ export default function AjustesScreen({ navigation }) {
         <Text style={styles.primaryText}>Editar perfil</Text>
       </TouchableOpacity>
 
-      {/* Recordatorio diario */}
+      {}
       <View style={styles.cardRow}>
         <View style={{ flex: 1 }}>
           <Text style={styles.cardTitle}>Recordatorio diario</Text>
@@ -154,19 +146,19 @@ export default function AjustesScreen({ navigation }) {
         />
       </View>
 
-      {/* Borrar datos locales */}
+      {}
       <TouchableOpacity style={styles.dangerButton} onPress={handleClearData} activeOpacity={0.9}>
         <Ionicons name="trash" size={20} color="#fff" />
         <Text style={styles.dangerText}>Borrar datos locales</Text>
       </TouchableOpacity>
 
-      {/* Cerrar sesión */}
+      {}
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout} activeOpacity={0.9}>
         <Ionicons name="log-out" size={20} color="#fff" />
         <Text style={styles.logoutText}>Cerrar sesión</Text>
       </TouchableOpacity>
 
-      {/* Acerca de */}
+      {}
       <View style={styles.aboutCard}>
         <Text style={styles.aboutTitle}>Acerca de</Text>
         <Text style={styles.aboutText}>TicTonTo · v{appVersion}</Text>

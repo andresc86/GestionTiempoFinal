@@ -49,8 +49,8 @@ export default function PlanScreen({ navigation }) {
       text: newPlan,
       hours,
       completed: false,
-      createdAt: Date.now(),   // ✅ nueva fecha de creación
-      completedAt: null,       // ✅ nueva fecha de finalización
+      createdAt: Date.now(),
+      completedAt: null,
     };
 
     const updated = [...plans, newItem];
@@ -62,7 +62,7 @@ export default function PlanScreen({ navigation }) {
   };
 
   const completePlan = async (id) => {
-    // Evita sumar XP 2 veces si ya estaba completado
+    
     const found = plans.find(p => p.id === id);
     if (!found) return;
     if (found.completed) {
@@ -91,12 +91,12 @@ export default function PlanScreen({ navigation }) {
     return d.toLocaleDateString();
   };
 
-  // (Opcional) ordenar: primero pendientes por fecha, luego completados por fecha de fin
+  
   const sortedPlans = [...plans].sort((a, b) => {
     if (a.completed !== b.completed) return a.completed ? 1 : -1;
     const da = a.completed ? a.completedAt || 0 : a.createdAt || 0;
     const db = b.completed ? b.completedAt || 0 : b.createdAt || 0;
-    return db - da; // recientes primero
+    return db - da;
   });
 
   return (
@@ -127,7 +127,7 @@ export default function PlanScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      {/* 🧾 Lista de planes guardados */}
+      {}
       <FlatList
         data={sortedPlans}
         keyExtractor={(item) => item.id}

@@ -35,11 +35,9 @@ export default function PerfilScreen() {
       setXP(xp); setLevel(level);
       try { const s = await getStreak(); if (typeof s === 'number') setStreak(s); } catch {}
 
-      // Avatar guardado localmente
       const savedAvatar = await AsyncStorage.getItem(AVATAR_KEY);
       if (savedAvatar) setAvatar(savedAvatar);
 
-      // Bio guardada localmente
       const savedBio = await AsyncStorage.getItem(BIO_KEY);
       if (savedBio) setBio(savedBio);
 
@@ -68,9 +66,7 @@ export default function PerfilScreen() {
       await AsyncStorage.setItem(AVATAR_KEY, secure_url);
       setAvatar(secure_url);
 
-      // (Opcional) Guardar avatar en Firestore
-      // const user = auth.currentUser;
-      // if (user?.uid) await setDoc(doc(db, 'users', user.uid), { avatarUrl: secure_url }, { merge: true });
+
 
       Alert.alert('Listo ✅', 'Tu foto de perfil fue actualizada.');
     } catch (e) {
@@ -87,9 +83,7 @@ export default function PerfilScreen() {
       const trimmed = bio.trim();
       await AsyncStorage.setItem(BIO_KEY, trimmed);
 
-      // (Opcional) Guardar bio en Firestore
-      // const user = auth.currentUser;
-      // if (user?.uid) await setDoc(doc(db, 'users', user.uid), { bio: trimmed }, { merge: true });
+
 
       Alert.alert('Guardado ✅', 'Tu descripción fue actualizada.');
     } catch (e) {
@@ -108,7 +102,7 @@ export default function PerfilScreen() {
       <Text style={styles.title}>Perfil</Text>
       <Text style={styles.subtitle}>Personaliza tu perfil y revisa tu progreso.</Text>
 
-      {/* Avatar + botón cambiar */}
+      {}
       <View style={styles.avatarRow}>
         {avatar ? (
           <Image source={{ uri: avatar }} style={styles.avatar} />
@@ -121,7 +115,7 @@ export default function PerfilScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Descripción / Bio */}
+      {}
       <View style={styles.card}>
         <Text style={styles.label}>Descripción</Text>
         <Text style={styles.hint}>Cuéntanos algo sobre ti.</Text>
@@ -142,7 +136,7 @@ export default function PerfilScreen() {
         </View>
       </View>
 
-      {/* Info */}
+      {}
       <View style={styles.card}>
         <Text style={styles.label}>Correo</Text>
         <Text style={styles.value}>{email}</Text>

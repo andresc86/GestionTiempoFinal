@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const KEY = 'tictonto_daily_streak';
 const DATE_KEY = 'tictonto_last_open_date';
 
-const fmt = (d) => d.toISOString().slice(0,10); // YYYY-MM-DD
+const fmt = (d) => d.toISOString().slice(0,10);
 
 export async function touchStreak() {
   try {
@@ -21,11 +21,11 @@ export async function touchStreak() {
       const isToday = lastDate === todayStr;
 
       if (isToday) {
-        // already counted
+      
       } else if (isYesterday) {
         streak += 1;
       } else {
-        streak = 1; // reset
+        streak = 1; 
       }
     }
 

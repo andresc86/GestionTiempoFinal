@@ -3,14 +3,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const XP_KEY = '@user_xp';
 const LEVEL_KEY = '@user_level';
 
-// Sube el XP y ajusta nivel si aplica
 export const addXP = async (amount = 10) => {
   try {
     const xp = parseInt(await AsyncStorage.getItem(XP_KEY)) || 0;
     const level = parseInt(await AsyncStorage.getItem(LEVEL_KEY)) || 1;
 
     const newXP = xp + amount;
-    const nextLevelXP = level * 100; // cada nivel necesita 100xp más
+    const nextLevelXP = level * 100;
 
     let newLevel = level;
     if (newXP >= nextLevelXP) {
@@ -24,7 +23,6 @@ export const addXP = async (amount = 10) => {
   }
 };
 
-// Obtiene el XP y nivel actuales
 export const getUserProgress = async () => {
   try {
     const xp = parseInt(await AsyncStorage.getItem(XP_KEY)) || 0;
@@ -36,7 +34,6 @@ export const getUserProgress = async () => {
   }
 };
 
-// Reinicia XP (opcional, por si quieres botón de reset)
 export const resetProgress = async () => {
   await AsyncStorage.removeItem(XP_KEY);
   await AsyncStorage.removeItem(LEVEL_KEY);

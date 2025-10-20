@@ -11,10 +11,10 @@ Este repo parte de la base entregada por el profesor y se personalizó **solo la
 ## Scripts
 ```bash
 npm install
-npm run start      # abrir menú Expo
-npm run android    # lanzar en emulador/dispositivo Android
-npm run ios        # lanzar en iOS (solo macOS)
-npm run web        # vista web de Expo
+npm run start
+npm run android 
+npm run ios
+npm run web 
 ```
 
 ## Estructura relevante
