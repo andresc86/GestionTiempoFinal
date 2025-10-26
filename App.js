@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 
-// 🟣 Importar el servicio SQLite
 import sqliteService from './src/services/sqliteService';
 
 import HomeScreen from './src/screens/HomeScreen';
@@ -54,7 +53,6 @@ function MainTabs() {
 }
 
 export default function App() {
-  // 🟣 Inicializar la base de datos al iniciar la app
   useEffect(() => {
     sqliteService.init();
     console.log('📦 Base de datos lista');
@@ -63,14 +61,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
-        {/* Pantallas de autenticación */}
+        {}
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
 
-        {/* Navegación principal */}
+        {}
         <Stack.Screen name="MainTabs" component={MainTabs} />
 
-        {/* Otras pantallas */}
+        {}
         <Stack.Screen name="Plan" component={PlanScreen} />
         <Stack.Screen name="Historial" component={HistorialScreen} />
       </Stack.Navigator>
